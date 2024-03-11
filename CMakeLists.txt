@@ -82,6 +82,11 @@ add_executable(controller_node src/my_assignment/robot_move_topics.cpp)
 target_link_libraries (controller_node ${catkin_LIBRARIES})
 
 #listener
+add_executable(pose_listener_node src/my_assignment/robot_pose_topic.cpp)
+target_link_libraries (pose_listener_node ${catkin_LIBRARIES})
+
+
+#listener
 add_executable(listener_node src/topic01_basics/talker_listener/listener.cpp)
 target_link_libraries (listener_node ${catkin_LIBRARIES})
 
