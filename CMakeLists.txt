@@ -78,13 +78,13 @@ target_link_libraries (talker_node ${catkin_LIBRARIES})
 #add_dependencies(talker gaitech_doc_generate_message_cpp)
 
 
-#controller
-add_executable(controller_node src/my_assignment/robot_move_topics.cpp)
-target_link_libraries (controller_node ${catkin_LIBRARIES})
+#sensor publisher
+add_executable(sensor_pub_node src/iot_sensor/sensor_pub.cpp)
+target_link_libraries (sensor_pub_node ${catkin_LIBRARIES})
 
-#listener
-add_executable(pose_listener_node src/my_assignment/robot_pose_topic.cpp)
-target_link_libraries (pose_listener_node ${catkin_LIBRARIES})
+#sensor subscriber
+add_executable(sensor_sub_node src/iot_sensor/sensor_sub.cpp)
+target_link_libraries (sensor_sub_node ${catkin_LIBRARIES})
 
 
 #listener
