@@ -1,7 +1,7 @@
 #include "ros/ros.h"
 #include "my_ros_projects/my_sensor.h"
 #include <sstream>
-
+ 
 int main(int argc, char **argv)
 {
 	// Initiate new ROS node named "talker"
