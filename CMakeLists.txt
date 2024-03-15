@@ -79,13 +79,13 @@ target_link_libraries (talker_node ${catkin_LIBRARIES})
 #add_dependencies(talker gaitech_doc_generate_message_cpp)
 
 
-#sensor publisher
-add_executable(sensor_pub_node src/iot_sensor/sensor_pub.cpp)
-target_link_libraries (sensor_pub_node ${catkin_LIBRARIES})
+#summer server
+add_executable(summer_server src/summer_serv/summer_server.cpp)
+target_link_libraries (summer_server ${catkin_LIBRARIES})
 
-#sensor subscriber
-add_executable(sensor_sub_node src/iot_sensor/sensor_sub.cpp)
-target_link_libraries (sensor_sub_node ${catkin_LIBRARIES})
+#summer client
+add_executable(summer_client src/summer_serv/summer_client.cpp)
+target_link_libraries (summer_client ${catkin_LIBRARIES})
 
 
 #listener
