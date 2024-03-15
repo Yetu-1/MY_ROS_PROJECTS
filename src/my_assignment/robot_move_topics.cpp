@@ -15,6 +15,7 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
+#include "turtlesim/Pose"
 #include <sstream>
 
 int main(int argc, char **argv)
