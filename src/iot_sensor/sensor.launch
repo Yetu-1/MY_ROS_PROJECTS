@@ -1,4 +1,4 @@
 <launch>
-    <node name="sensor_pub_node" pkg="my_ros_projects" type="sensor_pub.cpp" />
-    <node name="sensor_sub_node" pkg="my_ros_projects" type="sensor_sub.cpp" />
+    <node name="sensor_pub_node" pkg="my_ros_projects" type="sensor_pub_node" />
+    <node name="sensor_sub_node" pkg="my_ros_projects" type="sensor_sub_node" />
 </launch>
