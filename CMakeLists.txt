@@ -78,6 +78,10 @@ add_executable(talker_node src/topic01_basics/talker_listener/talker.cpp)
 target_link_libraries (talker_node ${catkin_LIBRARIES})
 #add_dependencies(talker gaitech_doc_generate_message_cpp)
 
+#robot
+add_executable(robot_node src/my_assignment/robot_move_topics.cpp)
+target_link_libraries (robot_node ${catkin_LIBRARIES})
+
 
 #summer server
 add_executable(summer_server src/summer_serv/summer_server.cpp)

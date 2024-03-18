@@ -15,41 +15,66 @@
 
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
-#include "turtlesim/Pose"
+#include "turtlesim/Pose.h"
 #include <sstream>
+#include <math.h>
+
+// global variables for publisher(vel) and subscriber(Pose)
+ros::Publisher velocity_pub;
+ros::Subscriber position_sub;
+int x , y;
+void move(double speed, double distance, bool isForward);
+
+void chatterCallback(const turtlesim::Pose::ConstPtr& msg) {
+   x = msg->x;
+   y = msg->y;
+}
 
 int main(int argc, char **argv)
 {
-	// Initiate new ROS node named "talker"
-	ros::init(argc, argv, "controller_node");
+	// Initiate new ROS node
+	ros::init(argc, argv, "robot_node");
 
-	//create a node handle: it is reference assigned to a new node
 	ros::NodeHandle n;
-	//create a publisher with a topic "chatter" that will send a String message
-	ros::Publisher speed_publisher = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000);
-	//Rate is a class the is used to define frequency for a loop. Here we send a message each two seconds.
-	ros::Rate loop_rate(1); //1 message per second
 
+	velocity_pub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000);
+   //position_sub = n.subscribe("/turtle1/pose", 1000, chatterCallback);
+   ros::Rate loop_rate(0.5);
    int count = 0;
-   while (ros::ok()) // Keep spinning loop until user presses Ctrl+C
-   {
-       //create a new String ROS message.
-	   //Message definition in this link http://docs.ros.org/api/std_msgs/html/msg/String.html
-	   geometry_msgs::Twist msg;
-      // testing changes
-       msg.linear.x = 1.0;
 
-    //    //print the content of the message in the terminal
-    //    ROS_INFO("[Talker] I published %s\n", msg.data.c_str());
+   move(2, 4, false);
 
-       //Publish the message
-       speed_publisher.publish(msg);
+   ros::spin();
 
-       ros::spinOnce(); // Need to call this function often to allow ROS to process incoming messages
-
-      loop_rate.sleep(); // Sleep for the rest of the cycle, to enforce the loop rate
-       count++;
-   }
    return 0;
 }
 
+
+void move(double speed, double distance, bool isForward) {
+   double distanceMoved = 0.0;
+
+   geometry_msgs::Twist msg;
+   if(isForward)
+      msg.linear.x = abs(speed);
+   else 
+      msg.linear.x = -abs(speed);
+
+
+   ros::Rate loop_rate(10); //1 message per second
+	double t0 = ros::Time::now().toSec();
+   ROS_INFO("begin");
+   do{
+      velocity_pub.publish(msg);
+
+      double t = ros::Time::now().toSec();
+      distanceMoved = speed * (t - t0);
+      
+      ros::spinOnce();
+      loop_rate.sleep();
+
+
+   }while(distanceMoved < distance);
+   ROS_INFO("done");
+   msg.linear.x = 0;
+   velocity_pub.publish(msg);
+}
