@@ -1,4 +1,5 @@
 <launch>
+    <node name="turtlesim" pkg="turtlesim" type="turtlesim_node"/>
     <node name="sensor_pub_node" pkg="my_ros_projects" type="sensor_pub_node" />
-    <node name="sensor_sub_node" pkg="my_ros_projects" type="sensor_sub_node" />
+    <node name="sensor_sub_node" pkg="my_ros_projects" type="sensor_sub_node" output="screen"/>
 </launch>
