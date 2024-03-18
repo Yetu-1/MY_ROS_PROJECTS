@@ -82,6 +82,13 @@ target_link_libraries (talker_node ${catkin_LIBRARIES})
 add_executable(robot_node src/my_assignment/robot_move_topics.cpp)
 target_link_libraries (robot_node ${catkin_LIBRARIES})
 
+#sensor pub
+add_executable(sensor_pub_node src/iot_sensor/sensor_pub.cpp)
+target_link_libraries (sensor_pub_node ${catkin_LIBRARIES})
+
+#sensor sub
+add_executable(sensor_sub_node src/iot_sensor/sensor_sub.cpp)
+target_link_libraries (sensor_sub_node ${catkin_LIBRARIES})
 
 #summer server
 add_executable(summer_server src/summer_serv/summer_server.cpp)
