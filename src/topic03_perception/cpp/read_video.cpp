@@ -14,9 +14,9 @@ int main(int, char**)
     {
         Mat frame;
         video_capture >> frame; // get a new frame from camera
-        cvtColor(frame, gray_image, COLOR_BGR2GRAY);
-        //GaussianBlur(edges, edges, Size(7,7), 1.5, 1.5);
-        //Canny(edges, edges, 0, 30, 3);
+        //cvtColor(frame, gray_image, COLOR_BGR2GRAY);
+        //GaussianBlur(frame, gray_image, Size(7,7), 1.5, 1.5);
+        Canny(frame, gray_image, 0, 30, 3);
         imshow("gray image", gray_image);
         if(waitKey(30) >= 0) break;
     }
