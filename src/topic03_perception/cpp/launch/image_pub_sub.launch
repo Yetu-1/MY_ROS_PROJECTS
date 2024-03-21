@@ -9,7 +9,7 @@
 <node name="image_view_node" pkg="image_view" type="image_view" output="screen" >
         <remap from="image" to="/usb_camera_node/image_raw"/>
 </node>
-<node name="image_pub_sub_cpp" pkg="ros_essentials_cpp" type="image_pub_sub_cpp" output="screen" >
+<node name="image_pub_sub_cpp" pkg="my_ros_projects" type="image_pub_sub_cpp" output="screen" >
         <remap from="image" to="/usb_camera_node/image_raw"/>
 </node>
 <node name="image_view2_node" pkg="image_view" type="image_view" output="screen" >
