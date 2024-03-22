@@ -52,12 +52,15 @@ def get_contour_center(contour):
     return cx, cy
 
 def main():
-    video_capture = cv2.VideoCapture("video/tennis-ball-video.mp4")
-
+    #video_capture = cv2.VideoCapture("video/tennis-ball-video.mp4")
+    video_capture = cv2.VideoCapture(0)
     while(True): 
         ret, frame = video_capture.read()
-    
-        cv2.imshow("Track Ball" , frame)
+        yellowLower =(30, 150, 100)
+        yellowUpper = (50, 255, 255)
+        binary_image_mask = filter_color(frame, yellowLower, yellowUpper)
+        contours = getContours(binary_image_mask)
+        draw_ball_contour(binary_image_mask, frame, contours)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
