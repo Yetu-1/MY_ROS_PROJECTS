@@ -27,7 +27,7 @@ def getContours(binary_image):
     #_, contours, hierarchy = cv2.findContours(binary_image, 
     #                                          cv2.RETR_TREE, 
     #                                           cv2.CHAIN_APPROX_SIMPLE)
-    _, contours, hierarchy = cv2.findContours(binary_image.copy(), 
+    contours, hierarchy = cv2.findContours(binary_image.copy(), 
                                             cv2.RETR_EXTERNAL,
 	                                        cv2.CHAIN_APPROX_SIMPLE)
     return contours
@@ -40,7 +40,7 @@ def draw_ball_contour(binary_image, rgb_image, contours):
         area = cv2.contourArea(c)
         perimeter= cv2.arcLength(c, True)
         ((x, y), radius) = cv2.minEnclosingCircle(c)
-        if (area>100):
+        if (area> 10000):
             cv2.drawContours(rgb_image, [c], -1, (150,250,150), 1)
             cv2.drawContours(black_image, [c], -1, (150,250,150), 1)
             cx, cy = get_contour_center(c)
@@ -62,7 +62,7 @@ def get_contour_center(contour):
     return cx, cy
 
 def main():
-    image_name = "images/tennisball05.jpg"
+    image_name = "images/tennisball02.jpg"
     yellowLower =(30, 150, 100)
     yellowUpper = (50, 255, 255)
     rgb_image = read_rgb_image(image_name, True)
