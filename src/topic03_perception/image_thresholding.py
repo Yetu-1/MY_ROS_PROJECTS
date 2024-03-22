@@ -37,8 +37,8 @@ def main():
     as_gray = True
     threshol_value=115
     gray_image = read_image(image_name,as_gray)
-    basic_thresholding(gray_image, threshol_value)
-    #adaptive_thresholding(gray_image, threshol_value)
+    #basic_thresholding(gray_image, threshol_value)
+    adaptive_thresholding(gray_image, threshol_value)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
