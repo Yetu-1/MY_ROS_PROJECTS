@@ -36,7 +36,7 @@ cv2.moveWindow("Green Channel",0,height)
 print ('---- slipt the image into Hue, Saturation, Value channels.----- ')
 hsv = cv2.cvtColor(color_image, cv2.COLOR_BGR2HSV)
 h,s,v = cv2.split(hsv)
-hsv_image = np.concatenate((h,s,v),axis=1)
+hsv_image = np.concatenate((h,s,v),axis=0)
 cv2.imshow("Hue, Saturation, Value Image",hsv_image)
 cv2.imshow("HSV Image",hsv)
 
